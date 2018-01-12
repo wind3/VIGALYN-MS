@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>com.vigalyn</groupId>
+    <artifactId>vigalyn-ms-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>vigalyn-ms-register</artifactId>
+  <name>VIGALYN-MS-REGISTER</name>
+  <description>微服务注册中心</description>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+	        <!--表示为web工程-->
+	        <dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-web</artifactId>
+	        </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            </dependency>
+		    <dependency>
+		    	<groupId>org.springframework.boot</groupId>
+		    	<artifactId>spring-boot-devtools</artifactId>
+		    </dependency>
+	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+  </dependencies>
+  
+      <!-- <profiles>
+        <profile>
+            <id>register-first</id>
+            <properties>
+                <final.project.name>register-center-first</final.project.name>
+                <server.port>8881</server.port>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>register-second</id>
+            <properties>
+                <final.project.name>register-center-second</final.project.name>
+                <server.port>8882</server.port>
+            </properties>
+        </profile>
+        <profile>
+            <id>register-third</id>
+            <properties>
+                <final.project.name>register-center-third</final.project.name>
+                <server.port>8883</server.port>
+            </properties>
+        </profile>
+    </profiles>
+ 
+    <build>
+        <finalName>${final.project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build> -->
+</project>
