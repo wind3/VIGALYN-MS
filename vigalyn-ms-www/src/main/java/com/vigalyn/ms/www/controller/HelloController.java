@@ -3,11 +3,13 @@ package com.vigalyn.ms.www.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vigalyn.hello.domain.User;
 import com.vigalyn.ms.www.service.WwwHelloService;
 
 @RestController
@@ -24,8 +26,8 @@ public class HelloController {
     }
     
     @RequestMapping(value="/user",method=RequestMethod.GET)
-    public String helloUser(@RequestParam String name) {
-        LOG.info("begin hello " + name);
-        return wwwHelloService.helloUser(name).toString();
+    public String helloUser(@RequestBody User user) {
+        LOG.info("begin hello " + user.toString());
+        return wwwHelloService.hello(user);
     }
 }
