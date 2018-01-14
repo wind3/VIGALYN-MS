@@ -60,6 +60,7 @@
 		<module>vigalyn-ms-register</module>
     <module>vigalyn-ms-um</module>
     <module>vigalyn-ms-www</module>
+    <module>vigalyn-ms-config-server</module>
   </modules>
 	
 	        <!-- 依赖仓库 设置从aliyun仓库下载 -->  
