@@ -1,11 +1,9 @@
 server:
- port: 9091
-spring:
- application:
-    name: www
+ port: 9091   
+spring: 
+ application: 
+  name: www   
 eureka: 
   client:
     service-url: 
-     defaultZone: http://localhost:8080/eureka/
-      
-    
+     defaultZone: http://localhost:8080/eureka/     

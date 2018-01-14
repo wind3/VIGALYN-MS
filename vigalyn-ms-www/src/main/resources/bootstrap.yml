@@ -1,0 +1,19 @@
+spring: 
+ application:
+    name: www   
+ cloud: 
+  config: 
+   name: www-config
+   profile: default
+   label: master/vigalyn-ms-www/wind3.yml
+   discovery: 
+    enabled: true
+    serviceId: configServer 
+    
+eureka: 
+  client:
+    service-url: 
+     defaultZone: http://localhost:8080/eureka/
+server:
+ port: 9091   
+    
