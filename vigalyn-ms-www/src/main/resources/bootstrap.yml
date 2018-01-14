@@ -5,7 +5,7 @@ spring:
   config: 
    name: www-config
    profile: default
-   label: master/vigalyn-ms-www/wind3.yml
+   label: master/vigalyn-ms-www/
    discovery: 
     enabled: true
     serviceId: configServer 

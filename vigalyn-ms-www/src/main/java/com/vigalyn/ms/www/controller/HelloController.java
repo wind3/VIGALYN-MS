@@ -22,13 +22,16 @@ public class HelloController {
     @Autowired
     private WwwHelloService wwwHelloService;
     
-    @Value("${wind3:age}")
+    @Value("${wind3:school}")
     String school = "桂平三中";
+    
+    @Value("${wind3:age}")
+    String age = "20"; 
     
     @RequestMapping(value="/name",method=RequestMethod.GET)
     public String hello(@RequestParam String name) {
-        LOG.info("begin hello " + name + ";school =" + school);
-        return wwwHelloService.hello(name + school);
+        LOG.info("begin hello " + name + ";school =" + school + ";age = " +age);
+        return wwwHelloService.hello(name + school + age );
     }
     
     @RequestMapping(value="/user",method=RequestMethod.GET)
