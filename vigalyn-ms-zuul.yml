@@ -1,5 +1,5 @@
 zuul: 
  routes: 
   um: 
-   service-id: UmWeb
+   serviceId: UmWeb
    path: /um/**
