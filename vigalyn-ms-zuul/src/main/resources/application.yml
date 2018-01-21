@@ -1,0 +1,7 @@
+zuul: 
+ routes: 
+  sso: 
+   serviceId: UmWeb
+   path: /um/**
+      
+    
