@@ -1,0 +1,23 @@
+spring: 
+ application:
+    name: registerCenterWeb   
+ cloud: 
+  config: 
+   name: register-config
+   profile: default
+   label: dev
+   discovery: 
+    enabled: true
+    serviceId: configServer 
+server:
+ port: 8080 
+ 
+eureka: 
+  instance:
+    hostname:  localhost
+  client:
+    service-url: 
+     defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka:  false
+    fetch-registry: false  
+    

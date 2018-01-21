@@ -8,10 +8,11 @@ spring:
    server: 
     git:
      uri: https://github.com/wind3/VIGALYN-CONFIG
+     searchPaths: appConfig
 eureka: 
   instance:
     hostname: localhost
-    appname: configServer-instance-01
+    appname: configServer
   client:
     service-url: 
      defaultZone: http://localhost:8080/eureka/

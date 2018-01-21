@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vigalyn.hello.domain.User;
-import com.vigalyn.ms.www.service.WwwHelloService;
+import com.vigalyn.hello.service.HelloService;
 
 @RestController
 @RequestMapping(value="/hello",produces= {"application/json;charset=UTF-8"})
@@ -20,12 +20,12 @@ import com.vigalyn.ms.www.service.WwwHelloService;
 public class HelloController {
     private static final Logger LOG = LoggerFactory.getLogger(HelloController.class);
     @Autowired
-    private WwwHelloService wwwHelloService;
+    private HelloService wwwHelloService;
     
-    @Value("${wind3:school}")
+    @Value("${wind3.school}")
     String school = "桂平三中";
     
-    @Value("${wind3:age}")
+    @Value("${wind3.age}")
     String age = "20"; 
     
     @RequestMapping(value="/name",method=RequestMethod.GET)
