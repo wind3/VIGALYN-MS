@@ -1,0 +1,23 @@
+spring: 
+ application:
+    name: sso   
+ cloud: 
+  config: 
+   name: sso-config
+   profile: default
+   label: dev
+   
+   discovery: 
+    enabled: true
+    serviceId: configServer 
+    
+eureka: 
+  client:
+    service-url: 
+     defaultZone: http://localhost:8080/eureka/
+feign: 
+ hystrix: 
+  enabled: true     
+server:
+ port: 9092   
+    

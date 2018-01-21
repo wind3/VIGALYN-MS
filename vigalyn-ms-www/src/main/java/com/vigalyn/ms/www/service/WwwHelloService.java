@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 import com.vigalyn.hello.domain.User;
 import com.vigalyn.hello.service.HelloService;
-import com.vigalyn.ms.www.service.WwwHelloService.HelloHystrixFactory;
+import com.vigalyn.ms.www.service.impl.WwwHelloServiceHystrixImpl;
 
 import feign.hystrix.FallbackFactory;
 
-//@FeignClient(name="UmWeb",fallback = WwwHelloServiceHystrixImpl.class,configuration=HystrixConfig.class)
-@FeignClient(name="UmWeb",fallbackFactory = HelloHystrixFactory.class)
+@FeignClient(name="UmWeb",fallback = WwwHelloServiceHystrixImpl.class)
+//@FeignClient(name="UmWeb",fallbackFactory = HelloHystrixFactory.class)
 public interface WwwHelloService extends HelloService {
 
     /*static class WwwHelloServiceHystrixImpl implements HelloService {

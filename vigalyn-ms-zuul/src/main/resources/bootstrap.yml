@@ -1,0 +1,21 @@
+server:
+ port: 1012
+spring: 
+ application:
+    name: zuul   
+ cloud: 
+  config: 
+   name: zuul-config
+   profile: default
+   label: dev
+   discovery: 
+    enabled: true
+    serviceId: configServer 
+eureka: 
+  instance:
+    appname: zuul
+    hostname: localhost
+  client:
+    service-url: 
+     defaultZone: http://localhost:8080/eureka/     
+    

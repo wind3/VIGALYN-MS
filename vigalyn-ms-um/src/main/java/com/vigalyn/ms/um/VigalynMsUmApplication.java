@@ -1,4 +1,4 @@
-package com.vigalyn.ms.register;
+package com.vigalyn.ms.um;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
