@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 @EnableFeignClients
 @EnableEurekaClient
-@SpringBootApplication
+@SpringBootApplication  
 public class VigalynMsWwwApplication {
 
 	public static void main(String[] args) {

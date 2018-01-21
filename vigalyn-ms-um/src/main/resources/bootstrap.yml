@@ -1,0 +1,23 @@
+server:
+ port: 9090
+spring: 
+ application:
+    name: UmWeb   
+ cloud: 
+  config: 
+   name: um-config
+   profile: default
+   label: master/vigalyn-ms-um/
+   discovery: 
+    enabled: true
+    serviceId: configServer 
+eureka: 
+  instance:
+    appname: UmWeb
+    hostname: localhost
+  client:
+    service-url: 
+     defaultZone: http://localhost:8080/eureka/           
+feign: 
+ hystrix: 
+  enabled: true         
