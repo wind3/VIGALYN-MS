@@ -8,7 +8,7 @@ spring:
    server: 
     git:
      uri: https://github.com/wind3/VIGALYN-CONFIG
-     searchPaths: vigalyn-ms-www
+     searchPaths: appConfig
 eureka: 
   instance:
     hostname: localhost

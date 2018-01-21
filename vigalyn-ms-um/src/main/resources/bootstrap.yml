@@ -7,7 +7,7 @@ spring:
   config: 
    name: um-config
    profile: default
-   label: master/vigalyn-ms-um/
+   label: dev
    discovery: 
     enabled: true
     serviceId: configServer 
