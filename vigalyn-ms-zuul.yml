@@ -1,0 +1,5 @@
+zuul: 
+ routes: 
+  um: 
+   service-id: UmWeb
+   path: /um/**
