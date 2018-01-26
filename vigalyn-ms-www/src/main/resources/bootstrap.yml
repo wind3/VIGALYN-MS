@@ -10,7 +10,6 @@ spring:
    discovery: 
     enabled: true
     serviceId: configServer 
-    
 eureka: 
   client:
     service-url: 

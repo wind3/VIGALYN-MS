@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vigalyn.hello.domain.User;
 import com.vigalyn.hello.service.HelloService;
 
+import io.swagger.annotations.Api;
+
+@Api("HelloController接口")
 @RestController
 @RequestMapping(value="/hello",produces= {"application/json;charset=UTF-8"})
 public class HelloController {
