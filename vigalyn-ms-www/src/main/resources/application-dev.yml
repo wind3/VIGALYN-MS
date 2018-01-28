@@ -6,6 +6,9 @@ wind3:
  age: 30
  wife: 李琳
 spring: 
+  rabbitmq: 
+   host: 127.0.0.1
+   port: 5672 
   mail: 
    host: smtp.163.com
    username: wind3at048@163.com
@@ -15,12 +18,29 @@ spring:
      auth: true
      starttls: 
       enable: true
-      required: true   
+      required: true        
 thread: 
  pool: 
   coreSize: 5
   maxSize: 10
   queueSize: 20
-  
-  
+info: 
+ app: 
+  name: vigalyn-www
+  email: wind3at048@163.com
+ build: 
+  artifact: "@project.artifactId@"
+  name: "@project.name@"
+  version: "@project.version@" 
+endpoints: 
+ mappings: 
+  sensitive: false
+ shutdown: 
+  enabled: true 
+ beans: 
+  id: springBeans
+  sensitive: false 
+management: 
+ security: 
+  enabled: false  
    
