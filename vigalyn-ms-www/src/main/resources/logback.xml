@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="APP_Name" value="myAppName" />
+    <property name="filePath" value="log/"></property>
+　　　<contextName>${APP_Name}</contextName> 
+    <!-- 开发环境 -->
+    <springProfile name="dev">       
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%msg%n</pattern>
+            </encoder>
+        </appender> 
+        
+      <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
+          <fileNamePattern>${filePath}logFile.%d{yyyy-MM-dd}.log</fileNamePattern>   
+          <maxHistory>30</maxHistory>    
+        </rollingPolicy>      
+        <encoder>   
+          <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>   
+        </encoder>   
+        
+     </appender>    
+     <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />   
+        </root>
+       <root level="INFO">
+            <appender-ref ref="FILE" />   
+        </root> 
+    </springProfile>
+    
+    <springProfile name="prod">
+	  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">   
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
+	      <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>   
+	      <maxHistory>30</maxHistory>    
+	    </rollingPolicy>      
+	    <encoder>   
+	      <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>   
+	    </encoder>   
+     </appender>    
+	  <root level="INFO">   
+	    <appender-ref ref="FILE" />   
+	  </root>   
+    </springProfile>
+
+</configuration>

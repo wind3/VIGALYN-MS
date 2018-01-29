@@ -15,11 +15,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-	     <!--表示为web工程-->
+
 	    <dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-web</artifactId>
-	    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
 	    <dependency>
 	        <groupId>org.springframework.cloud</groupId>
 	        <artifactId>spring-cloud-starter-config</artifactId>
@@ -47,17 +51,13 @@
         </dependency> -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
               <groupId>com.vigalyn</groupId>
               <artifactId>hello-service-interface</artifactId>
               <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-        	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-devtools</artifactId>
-        </dependency>
+
   </dependencies>
 </project>

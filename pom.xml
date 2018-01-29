@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.vigalyn</groupId>
@@ -15,7 +16,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.9.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -23,72 +24,202 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring.cloud.version>Edgware.RELEASE</spring.cloud.version>
+		<lombok.version>1.16.18</lombok.version>
+		<alibaba.fastjson.version>1.2.31</alibaba.fastjson.version>
 	</properties>
-
+	
+	<!-- 全局依赖设置：引入依赖会自动传递到子模块中 -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<!-- 排除默认日志框架 spring boot 1.4.X默认日志框架为 SLF4J+Logback,这里先排除 -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		
-		
-	</dependencies>
-	
-<dependencyManagement>
-    <dependencies>
+		       <!--表示为web工程-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring.cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-    </dependencies>
-</dependencyManagement>
+        <!-- 排除Tomcat,使用jetty -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <!-- 加入Swagger2的依赖 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
+		<dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.version}</version>
+            </dependency>
+             <!-- 日志配置开始 -->
+        <!-- 加上几个重要的实现适配器log4j-over-slf4j、log4j-over-slf4j、jul-to-slf4j， 然后jboss-logging部分也进行了统一的版本控制。同时删除及exclude掉所有log4j、commons-logging的各个版本。 
+            适配器和具体日志实现，不能共存，否则适配器不生效。这样的话，我们只有logback配置文件即可，因为log4j的输出已经委托给了slf4j（通过log4j-over-slf4j），而slf4j的默认实现是logbac -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </dependency>
+        <!-- 具体的日志实现 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+<!-- 日志配置结束 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+		    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+	</dependencies>
+	<!-- 全局依赖管理：引入依赖不会自动传递到子模块中，子模块中需要申明依赖；重要用于依赖版本管理 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                    <fork>true</fork>
+                </configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                    <fork>true</fork>
+                    <compilerVersion>1.3</compilerVersion>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgument>-verbose -bootclasspath ${java.home}\lib\rt.jar</compilerArgument>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
 
 	<modules>
 		<module>vigalyn-ms-register</module>
-    <module>vigalyn-ms-um</module>
-    <module>vigalyn-ms-www</module>
-    <module>vigalyn-ms-config-server</module>
-    <module>vigalyn-ms-sso</module>
-    <module>vigalyn-ms-zuul</module>
-  </modules>
-	
-	        <!-- 依赖仓库 设置从aliyun仓库下载 -->  
-    <repositories>  
-        <repository>  
-            <id>alimaven</id>  
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>  
-            <snapshots>  
-                <enabled>true</enabled>  
-            </snapshots>  
-            <releases>  
-                <enabled>true</enabled>  
-            </releases>  
-        </repository>  
-    </repositories>  
-    <!-- 插件依赖仓库 -->  
-    <pluginRepositories>  
-        <pluginRepository>  
-            <id>alimaven</id>  
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>  
-            <snapshots>  
-                <enabled>true</enabled>  
-            </snapshots>  
-            <releases>  
-                <enabled>true</enabled>  
-            </releases>  
-        </pluginRepository>  
-    </pluginRepositories>  
+		<module>vigalyn-ms-um</module>
+		<module>vigalyn-ms-www</module>
+		<module>vigalyn-ms-config-server</module>
+		<module>vigalyn-ms-sso</module>
+		<module>vigalyn-ms-zuul</module>
+	</modules>
+
+	<!-- 依赖仓库 设置从aliyun仓库下载 -->
+	<repositories>
+		<repository>
+			<id>alimaven</id>
+			<url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+	</repositories>
+	<!-- 插件依赖仓库 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>alimaven</id>
+			<url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

@@ -1,0 +1,26 @@
+feign: 
+ hystrix: 
+  enabled: true
+wind3: 
+ school: 北京科技大学
+ age: 30
+ wife: 李琳
+spring: 
+  mail: 
+   host: smtp.163.com
+   username: wind3at048@163.com
+   password: love123!
+   properties: 
+    smtp: 
+     auth: true
+     starttls: 
+      enable: true
+      required: true   
+thread: 
+ pool: 
+  coreSize: 5
+  maxSize: 10
+  queueSize: 20
+  
+  
+   
