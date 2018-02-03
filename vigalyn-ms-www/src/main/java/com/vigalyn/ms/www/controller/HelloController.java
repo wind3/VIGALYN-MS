@@ -1,17 +1,27 @@
 package com.vigalyn.ms.www.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.wuwz.poi.ExcelKit;
 
 import com.vigalyn.hello.domain.User;
 import com.vigalyn.hello.service.HelloService;
+import com.vigalyn.ms.www.domain.UserInfo;
 
 import io.swagger.annotations.Api;
 
@@ -40,4 +50,19 @@ public class HelloController {
         LOG.info("begin hello " + user.toString());
         return wwwHelloService.hello(user);
     }
+    
+    @GetMapping("/excel")
+    public void exportExcel(HttpServletResponse response) {
+    	List<UserInfo> userList = new ArrayList<>();
+    	ExcelKit.$Export(UserInfo.class, response).toExcel(userList, "用户信息记录");
+    }
+    
+    public void uploadExcel(@RequestParam("file") MultipartFile file) {
+    	// 限制文件大小5M
+    			DiskFileItemFactory factory = new DiskFileItemFactory();
+    			factory.setSizeThreshold(1024 * 1024 * 5);
+    			// 获取文件名
+    			String fileName = file.getOriginalFilename();
+    }
+    
 }
