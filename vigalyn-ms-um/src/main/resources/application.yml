@@ -1,12 +1,12 @@
 wind3: 
- school: 北京科技大学
+ school: 清华大学
  age: 30
- wife: 李琳
+ wife: 李
 spring: 
  mail: 
-  host: mail.cmrh.com
-  username: zengwj@cmrh.com
-  password: love123!Q
+  host: mail.qq.com
+  username: 
+  password: 
   properties: 
    mail: 
     smtp: 
